@@ -4,11 +4,13 @@ import mongoose from "mongoose";
 import wilderController from "./controllers/wilder"
 import {wilderValidation} from "./validations"
 import dotenv from "dotenv";
+import sportsManController from "./controllers/sportsman"
+import {sportsManValidation} from "./validations"
 
 dotenv.config()
-console.log(process.env)
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 mongoose
   .connect(
     process.env.MONGO_URI,
@@ -34,10 +36,17 @@ app.use(express.json())
 // });
 // /api/wilder/create
 
+// app.get("/", (req, res)=>{
+//   console.log("we are connected");
+//   res.status(200).json("we are good")
+// })
+ 
 app.post(
   "/api/wilder/create",
   wilderValidation.create,
   wilderController.create
 );
 
-app.listen(3000, () => console.log("Serveur lancé sur le port 3000"));
+app.post("/api/sportsman/create", sportsManValidation.create, sportsManController.create)
+
+app.listen(PORT, () => console.log("Serveur lancé sur le port 3000"));
