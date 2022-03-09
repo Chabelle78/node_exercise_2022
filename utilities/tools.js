@@ -14,6 +14,12 @@ export const verifUser = (err) => {
       errors = { ...errors, [key]: `${key} existe déjà` };
     });
 
+    if (err.kind && err.kind === "ObjectId"){
+        errors = {...errors, objectId: "Cet identifiant n'est pas un ObjectId valide"}
+      }
+    
+      return errors;
+
 
     return errors;
 }; 
@@ -35,3 +41,4 @@ export const verifUserSportsMan = (err) => {
     return errors;
 }; 
 
+  

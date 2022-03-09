@@ -1,11 +1,8 @@
 // const express = require("express") // ES5
 import express from "express"; //ES6
 import mongoose from "mongoose";
-import wilderController from "./controllers/wilder"
-import {wilderValidation} from "./validations"
 import dotenv from "dotenv";
-import sportsManController from "./controllers/sportsman"
-import {sportsManValidation} from "./validations"
+import wilderRouter from "./routes/wilder"
 
 dotenv.config()
 
@@ -26,27 +23,10 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
-//   // /api/wilder/create
-// app.post("/api/wilder/create", (req, res) => {
-//   //req
-//   //routes ou endpoints
-//   console.log("Créer un Wilder!");
-//   wilderController.create(req,res)
+app.use("/api", wilderRouter)
 
-// });
-// /api/wilder/create
-
-// app.get("/", (req, res)=>{
-//   console.log("we are connected");
-//   res.status(200).json("we are good")
-// })
- 
-app.post(
-  "/api/wilder/create",
-  wilderValidation.create,
-  wilderController.create
-);
-
-app.post("/api/sportsman/create", sportsManValidation.create, sportsManController.create)
+app.use((req, res)=>{
+  res.status(404).send("route qui nexiste pas")
+})
 
 app.listen(PORT, () => console.log("Serveur lancé sur le port 3000"));
