@@ -21,9 +21,12 @@ router.post(
 
 router.post("/sportsman/create", sportsManValidation.create, sportsManController.create)
 
+router.get("/wilders", getSpecificWilder.getAll)
 router.get("/wilder/name", getSpecificWilder.getOne)
 router.get("/sports/specific", getAllUserSports.getMany)
 router.delete("/wilder/delete/:_id", getSpecificWilder.delete)
+router.put("/wilder/update", getSpecificWilder.update)
+router.get("/wilder/find/:_id", getSpecificWilder.find)
 
 
 export default router;
