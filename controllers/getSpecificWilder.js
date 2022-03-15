@@ -1,4 +1,5 @@
 import WilderModel from "../models/Wilder"
+import { verifUser } from "../utilities/tools";
 
 export default {
   getAll: async (req, res) => {
@@ -12,7 +13,7 @@ export default {
       .catch((err) => {
         res.status(400).json({
           success: false,
-          result: listErrors(err),
+          result: verifUser(err),
         });
       });
   },
@@ -57,7 +58,7 @@ export default {
         console.log(err);
         res.status(400).json({
           success: false,
-          result: listErrors(err),
+          result: verifUser(err),
         });
       });
   },
@@ -92,7 +93,7 @@ export default {
       }).catch((err) => {
         res.json({
           success: false,
-          result: listErrors(err)
+          result: verifUser(err)
         })
 
       });

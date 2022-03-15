@@ -19,10 +19,9 @@ export const verifUser = (err) => {
       }
     
       return errors;
-
-
-    return errors;
 }; 
+
+
 export const verifUserSportsMan = (err) => {
     let errors = {};
 
