@@ -3,6 +3,7 @@ import express from "express"; //ES6
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import wilderRouter from "./routes/wilder"
+import cors from "cors"
 
 dotenv.config()
 
@@ -21,6 +22,11 @@ mongoose
 app.use(express.urlencoded({
   extended: true
 }))
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json())
 
 app.use("/api", wilderRouter)

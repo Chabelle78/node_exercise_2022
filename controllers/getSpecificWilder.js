@@ -17,10 +17,11 @@ export default {
       });
   },
   getOne: async (req, res, next) => {
+    const {_id} = req.params
 
     try {
-      const getOne = await WilderModel.findOne({
-        name: 'tb'
+      const getOne = await WilderModel.findById({
+        _id
       }).exec();
       console.log("yepaaaa")
       res.status(200).json(getOne)
