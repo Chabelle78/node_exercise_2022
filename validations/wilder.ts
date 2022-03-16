@@ -2,6 +2,8 @@ import {
     body,
     validationResult
 } from "express-validator";
+import {Request, Response} from "express"
+
 
 export const create = [
     body("name").isLength({
@@ -10,8 +12,8 @@ export const create = [
     body("city").isLength({
         min: 2
     }).withMessage("La ville doit avoir au moins 2 caractères"),
-    (req, res, next) => {
-        const errorsValidation = validationResult(req);
+    (req:Request, res:Response, next) => {
+        const errorsValidation:any = validationResult(req);
         console.log('%c⧭', 'color: #d90000', errorsValidation);
         if (!errorsValidation.isEmpty()) {
             // je dois formater les erreurs pour coller au modele : {success: false, result: {name: "Le nom doit ..."}}

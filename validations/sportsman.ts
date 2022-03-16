@@ -2,6 +2,7 @@ import {
     body,
     validationResult
 } from "express-validator"
+import {Request, Response} from "express"
 
 export const create = [
 
@@ -13,8 +14,8 @@ export const create = [
         min: 2
     }).withMessage("Le sport est requis, il doit etre une chaine de caractère en minuscule et contenir au moins deux lettre"),
 
-    (req, res, next) => {
-        const errorsValidation = validationResult(req);
+    (req:Request, res:Response, next) => {
+        const errorsValidation:any = validationResult(req);
         if (!errorsValidation.isEmpty()) {
 
             let errors = {};

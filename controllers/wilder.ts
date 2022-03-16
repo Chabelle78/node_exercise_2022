@@ -1,5 +1,5 @@
 //Create, Read, Update, Delete
-import WilderModel from "./../models/Wilder";
+import WilderModel from "../models/Wilder";
 import { verifUser } from "../utilities/tools";
 import {validationResult} from 'express-validator'
 
