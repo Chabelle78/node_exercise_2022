@@ -15,7 +15,7 @@ export default {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: verifUser(error)});
+      return res.status(400).json({ errors: verifUser(errors)});
     }
    
 -
