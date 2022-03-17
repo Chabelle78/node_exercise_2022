@@ -9,6 +9,9 @@ export const create = [
     body("name").isLength({
         min: 4
     }).withMessage("Le nom doit avoir au moins 4 caractères"),
+    body("description").isLength({
+        min: 1
+    }).withMessage("La description doit avoir au moins 1 caractères"),
     body("city").isLength({
         min: 2
     }).withMessage("La ville doit avoir au moins 2 caractères"),

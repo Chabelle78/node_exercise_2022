@@ -6,6 +6,9 @@ exports.create = [
     (0, express_validator_1.body)("name").isLength({
         min: 4
     }).withMessage("Le nom doit avoir au moins 4 caractères"),
+    (0, express_validator_1.body)("description").isLength({
+        min: 1
+    }).withMessage("La description doit avoir au moins 1 caractères"),
     (0, express_validator_1.body)("city").isLength({
         min: 2
     }).withMessage("La ville doit avoir au moins 2 caractères"),

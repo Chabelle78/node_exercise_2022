@@ -12,27 +12,29 @@ exports.default = {
         const errors = (0, express_validator_1.validationResult)(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
-                errors: (0, tools_1.verifUserSportsMan)(errors)
+                errors: (0, tools_1.verifUserSportsMan)(errors),
             });
         }
-        Sportman_1.default.init()
-            .then(() => {
+        Sportman_1.default.init().then(() => {
             const sportsMan = new Sportman_1.default({
                 name: name,
                 age: age,
-                sports: sports
+                sports: sports,
             });
-            sportsMan.save().then((result) => {
+            sportsMan
+                .save()
+                .then((result) => {
                 res.json({
                     success: true,
-                    result
+                    result,
                 });
-            }).catch((err) => {
+            })
+                .catch((err) => {
                 res.status(400).json({
                     success: false,
-                    result: (0, tools_1.verifUserSportsMan)(err)
+                    result: (0, tools_1.verifUserSportsMan)(err),
                 });
             });
         });
-    }
+    },
 };

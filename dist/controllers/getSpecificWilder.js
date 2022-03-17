@@ -34,7 +34,7 @@ exports.default = {
         const { _id } = req.params;
         try {
             const getOne = yield Wilder_1.default.findById({
-                _id
+                _id,
             }).exec();
             console.log("yepaaaa");
             res.status(200).json(getOne);
@@ -48,7 +48,7 @@ exports.default = {
     delete: (req, res, next) => {
         const { _id } = req.params;
         Wilder_1.default.deleteOne({
-            _id
+            _id,
         })
             .then((result) => {
             if (result.deletedCount === 0) {
@@ -73,49 +73,52 @@ exports.default = {
     update: (req, res) => {
         const { _id, name, city, skills } = req.body;
         Wilder_1.default.updateOne({
-            _id
+            _id,
         }, {
             name,
             city,
-            skills
+            skills,
         })
             .then((result) => {
             console.log(result);
             if (result.matchedCount === 0) {
                 return res.json({
                     success: false,
-                    result: "cet identifiant n'existe pas"
+                    result: "cet identifiant n'existe pas",
                 });
             }
             res.json({
                 success: true,
-                result
+                result,
             });
-        }).catch((err) => {
+        })
+            .catch((err) => {
             res.json({
                 success: false,
-                result: (0, tools_1.verifUser)(err)
+                result: (0, tools_1.verifUser)(err),
             });
         });
     },
     find: (req, res) => {
         const { _id } = req.params;
         Wilder_1.default.find({
-            _id
-        }).then((result) => {
+            _id,
+        })
+            .then((result) => {
             if (!result) {
                 return res.json({
                     succes: false,
-                    result: "cet identifiant nexiste pas"
+                    result: "cet identifiant nexiste pas",
                 });
             }
             res.json({
                 succes: true,
-                result
+                result,
             });
             console.log(result);
-        }).catch((err) => {
+        })
+            .catch((err) => {
             console.log(err);
         });
-    }
+    },
 };

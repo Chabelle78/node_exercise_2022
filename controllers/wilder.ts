@@ -2,14 +2,16 @@
 import WilderModel from "../models/Wilder";
 import { verifUser } from "../utilities/tools";
 import {validationResult} from 'express-validator'
+import { NextFunction, Request, Response } from "express";
+
 
 // const methods = {
 export default {
-
-  create: (req, res, next) => { //post
+  create: (req:Request, res:Response, next:NextFunction) => { //post
     const {
       name,
       city,
+      description,
       skills
     } = req.body;
 
@@ -23,6 +25,7 @@ export default {
       const wilder = new WilderModel({
         name: name,
         city: city,
+        description: description,
         skills: skills,
       });
 

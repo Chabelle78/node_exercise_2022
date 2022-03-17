@@ -1,7 +1,9 @@
 import SportsManModel from "../models/Sportman"
+import { NextFunction, Request, Response } from "express";
+
 
 export default {
-    getMany: async (req, res, next) => {
+    getMany: async (req:Request, res:Response, next:NextFunction) => {
         try {
             const userSports = await SportsManModel.find({
                 sports: "rugby"

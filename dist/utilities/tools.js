@@ -2,10 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifUserSportsMan = exports.verifUser = void 0;
 const verifUser = (err) => {
+    console.log("error", err);
     let errors = {};
-    Object.keys(err.errors).map((key) => {
-        errors = Object.assign(Object.assign({}, errors), { [key]: err.errors[key].message });
-    });
+    err.errors &&
+        Object.keys(err.errors).map((key) => {
+            errors = Object.assign(Object.assign({}, errors), { [key]: err.errors[key].message }); //key au premier tour est égal à name
+        });
     err.code === 11000 &&
         Object.keys(err.keyPattern).map((key) => {
             errors = Object.assign(Object.assign({}, errors), { [key]: `${key} existe déjà` });

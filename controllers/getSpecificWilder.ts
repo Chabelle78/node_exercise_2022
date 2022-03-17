@@ -1,8 +1,9 @@
-import WilderModel from "../models/Wilder"
+import WilderModel from "../models/Wilder";
 import { verifUser } from "../utilities/tools";
+import { NextFunction, Request, Response } from "express";
 
 export default {
-  getAll: async (req, res) => {
+  getAll: async (req: Request, res: Response) => {
     await WilderModel.find()
       .then((result) => {
         res.status(200).json({
@@ -17,31 +18,27 @@ export default {
         });
       });
   },
-  getOne: async (req, res, next) => {
-    const {_id} = req.params
+  getOne: async (req: Request, res: Response, next: NextFunction) => {
+    const { _id } = req.params;
 
     try {
       const getOne = await WilderModel.findById({
-        _id
+        _id,
       }).exec();
-      console.log("yepaaaa")
-      res.status(200).json(getOne)
-
+      console.log("yepaaaa");
+      res.status(200).json(getOne);
     } catch (error) {
-      console.log(error)
-      res.status(404)
-      next(error)
+      console.log(error);
+      res.status(404);
+      next(error);
     }
-
   },
 
-  delete: (req, res, next) => {
-    const {
-      _id
-    } = req.params;
+  delete: (req: Request, res: Response, next: NextFunction) => {
+    const { _id } = req.params;
     WilderModel.deleteOne({
-        _id
-      })
+      _id,
+    })
       .then((result) => {
         if (result.deletedCount === 0) {
           return res.json({
@@ -63,64 +60,59 @@ export default {
       });
   },
 
-  update: (req, res) => {
-    const {
-      _id,
-      name,
-      city,
-      skills
-    } = req.body;
-    WilderModel.updateOne({
-        _id
-      }, {
+  update: (req: Request, res: Response) => {
+    const { _id, name, city, skills } = req.body;
+    WilderModel.updateOne(
+      {
+        _id,
+      },
+      {
         name,
         city,
-        skills
-      })
+        skills,
+      }
+    )
       .then((result) => {
         console.log(result);
         if (result.matchedCount === 0) {
           return res.json({
             success: false,
-            result: "cet identifiant n'existe pas"
-          })
+            result: "cet identifiant n'existe pas",
+          });
         }
         res.json({
           success: true,
-          result
-        })
-
-      }).catch((err) => {
+          result,
+        });
+      })
+      .catch((err) => {
         res.json({
           success: false,
-          result: verifUser(err)
-        })
-
+          result: verifUser(err),
+        });
       });
   },
 
-  find: (req, res) => {
-    const {
-      _id
-    } = req.params;
+  find: (req: Request, res: Response) => {
+    const { _id } = req.params;
     WilderModel.find({
-      _id
-    }).then((result) => {
-      if (!result) {
-        return res.json({
-          succes: false,
-          result: "cet identifiant nexiste pas"
-        })
-      }
-      res.json({
-        succes: true,
-        result
-      })
-      console.log(result);
-    }).catch((err) => {
-      console.log(err)
+      _id,
     })
-
-  }
-
-}
+      .then((result) => {
+        if (!result) {
+          return res.json({
+            succes: false,
+            result: "cet identifiant nexiste pas",
+          });
+        }
+        res.json({
+          succes: true,
+          result,
+        });
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};

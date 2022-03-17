@@ -10,7 +10,7 @@ const express_validator_1 = require("express-validator");
 // const methods = {
 exports.default = {
     create: (req, res, next) => {
-        const { name, city, skills } = req.body;
+        const { name, city, description, skills } = req.body;
         const errors = (0, express_validator_1.validationResult)(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: (0, tools_1.verifUser)(errors) });
@@ -19,6 +19,7 @@ exports.default = {
             const wilder = new Wilder_1.default({
                 name: name,
                 city: city,
+                description: description,
                 skills: skills,
             });
             wilder

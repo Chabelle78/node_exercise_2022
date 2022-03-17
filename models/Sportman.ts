@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
-
 const Schema = mongoose.Schema; 
 
-const SportmanSchema = new Schema({
+interface SportsMan{
+    name:string;
+    age:number;
+    sports: string,
+}
+
+const SportmanSchema = new Schema<SportsMan>({
     name: {
         type: String,
         // unique: true,
