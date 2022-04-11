@@ -61,7 +61,8 @@ export default {
   },
 
   update: (req: Request, res: Response) => {
-    const { _id, name, city, skills } = req.body;
+    const { _id } = req.params;
+    const { name, city, skills, description } = req.body;
     WilderModel.updateOne(
       {
         _id,
@@ -69,6 +70,7 @@ export default {
       {
         name,
         city,
+        description,
         skills,
       }
     )

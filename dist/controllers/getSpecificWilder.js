@@ -71,12 +71,14 @@ exports.default = {
         });
     },
     update: (req, res) => {
-        const { _id, name, city, skills } = req.body;
+        const { _id } = req.params;
+        const { name, city, skills, description } = req.body;
         Wilder_1.default.updateOne({
             _id,
         }, {
             name,
             city,
+            description,
             skills,
         })
             .then((result) => {

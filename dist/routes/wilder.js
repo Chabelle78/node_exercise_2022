@@ -20,6 +20,6 @@ router.get("/wilders", getSpecificWilder_1.default.getAll);
 router.get("/wilder/name", getSpecificWilder_1.default.getOne);
 router.get("/sports/specific", getAllUserSports_1.default.getMany);
 router.delete("/wilder/delete/:_id", getSpecificWilder_1.default.delete);
-router.put("/wilder/update", getSpecificWilder_1.default.update);
+router.put("/wilder/update/:_id", getSpecificWilder_1.default.update);
 router.get("/wilder/find/:_id", getSpecificWilder_1.default.find);
 exports.default = router;
